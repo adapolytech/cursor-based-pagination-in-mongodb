@@ -24,9 +24,8 @@ export class DB extends EventEmitter {
     async close_db() {
         try {
             await this.mongoClient.close();
-            console.log("Connexion MongoDB fermée.");
         } catch (error) {
-            console.error("Erreur lors de la fermeture de la connexion:", error);
+            console.error("Impossible de férmer la connexion", error);
         }
     }
 
