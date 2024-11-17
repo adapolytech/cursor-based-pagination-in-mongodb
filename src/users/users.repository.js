@@ -9,7 +9,6 @@ export class UsersRepository {
     static collection = null
 
     static injectDB(db) {
-        console.log(db);
         db.createCollection(this.collectionName)
         this.collection = db.collection(this.collectionName);
     }
@@ -21,5 +20,9 @@ export class UsersRepository {
     static async insertOne(document) {
         const { insertedId } = await this.collection.insertOne(document);
         return insertedId
+    }
+
+    static async find(query = {}) {
+        return await this.collection.find(query).toArray()
     }
 }

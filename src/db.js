@@ -1,6 +1,6 @@
 import { EventEmitter } from "events";
 import { MongoClient } from "mongodb";
-import { UsersRepository } from "./users/repository.js";
+import { UsersRepository } from "./users/users.repository.js";
 
 export class DB extends EventEmitter {
 
@@ -13,11 +13,12 @@ export class DB extends EventEmitter {
     async init_db() {
         try {
             await this.mongoClient.connect();
-            this.mongoClient.on("serverHeartbeatSucceeded")
             this.db = this.mongoClient.db("node_app");
             this.init_repository()
             this.emit("success", this.db);
         } catch (error) {
+            console.log(error);
+
             this.emit("error", error)
         }
     }
