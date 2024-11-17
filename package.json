@@ -1,0 +1,25 @@
+{
+  "name": "cursor_based_pagination_app",
+  "version": "1.0.0",
+  "description": "A node js app with mongo database implement cursor based pagination",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "mongodb",
+    "cursor_pagination"
+  ],
+  "author": "@thenuulestdev",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
