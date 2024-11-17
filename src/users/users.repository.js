@@ -8,7 +8,7 @@ export class UsersRepository {
      */
     static collection = null
 
-    static injectDB(db) {
+    static injectDatabase(db) {
         db.createCollection(this.collectionName)
         this.collection = db.collection(this.collectionName);
     }

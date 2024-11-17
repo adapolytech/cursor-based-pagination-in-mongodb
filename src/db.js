@@ -17,8 +17,6 @@ export class DB extends EventEmitter {
             this.init_repository()
             this.emit("success", this.db);
         } catch (error) {
-            console.log(error);
-
             this.emit("error", error)
         }
     }
@@ -33,6 +31,6 @@ export class DB extends EventEmitter {
     }
 
     init_repository() {
-        UsersRepository.injectDB(this.db)
+        UsersRepository.injectDatabase(this.db)
     }
 }
