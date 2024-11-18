@@ -16,6 +16,7 @@ export class App {
     init_middlewares() {
         this.app.use(express.json({ limit: "5mb" }));
         this.app.use(cors({ origin: "*", methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], credentials: true }))
+        this.app.use(this.response_formatter)
     }
     /**
      * 
@@ -30,6 +31,16 @@ export class App {
                 this.app.use(controller.path, controller.router)
             })
         }
+    }
+
+    response_formatter(_req, res, next) {
+        res.success = (data) => {
+            res.json({ error: null, data })
+        }
+        res.error = (error) => {
+            res.json({ error, data: null })
+        }
+        next();
     }
 
     /**

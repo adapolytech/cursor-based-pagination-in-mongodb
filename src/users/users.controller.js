@@ -21,7 +21,7 @@ export class UsersController {
     async register(req, res, _next) {
         const data = { ...req.body }
         const insertedId = await UsersRepository.insertOne(data);
-        (res.status(201).json({ insertedId }))
+        (res.success({ insertedId }))
     }
 
     /**
@@ -32,7 +32,7 @@ export class UsersController {
     */
     async all(req, res, _next) {
         const users = await UsersRepository.find();
-        (res.status(201).json({ data: { users } }))
+        (res.success({ users }))
     }
 
 }
