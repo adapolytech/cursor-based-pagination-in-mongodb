@@ -33,9 +33,15 @@ export class App {
         }
     }
 
+    /**
+    * 
+    * @param {express.Request} req 
+    * @param {express.Response} res 
+    * @param {express.NextFunction} _next 
+    */
     response_formatter(_req, res, next) {
         res.success = (data) => {
-            res.json({ error: null, data })
+            res.setHeader("Content-type", "application/json").json({ error: null, data })
         }
         res.error = (error) => {
             res.json({ error, data: null })

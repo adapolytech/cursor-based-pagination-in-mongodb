@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { UsersRepository } from "./users.repository.js";
+import { UsersService } from "./users.service.js";
 export class UsersController {
     /**
      * @type {express.Router}
@@ -20,7 +20,7 @@ export class UsersController {
      */
     async register(req, res, _next) {
         const data = { ...req.body }
-        const insertedId = await UsersRepository.insertOne(data);
+        const insertedId = await UsersService.insertOne(data);
         (res.success({ insertedId }))
     }
 
@@ -31,7 +31,8 @@ export class UsersController {
     * @param {express.NextFunction} _next 
     */
     async all(req, res, _next) {
-        const users = await UsersRepository.find();
+        const query = { ...req.query, ...req.params }
+        const users = await UsersService.find(query);
         (res.success({ users }))
     }
 
