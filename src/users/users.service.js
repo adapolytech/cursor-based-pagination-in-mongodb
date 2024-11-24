@@ -17,6 +17,18 @@ export class UsersService {
     }
 
     static async find(query = {}) {
-        return UsersRepository.find(query);
+        const data = await UsersRepository.find(query, { sort: { createdAt: -1 }, limit: 10 })
+        if (data.length) return [];
+        const [firstItem, lastItem] = [data[0].createdAt, data[data.length - 1].createdAt]
+        let has_previous, has_next;
+        has_next = await UsersRepository.find({ createdAt: { lt: lastItem } });
+        has_previous = await UsersRepository.find({ createdAt: { $gt: firstItem } })
+        return {
+            data,
+            has_previous,
+            has_next,
+            previous_cursor: firstItem,
+            next_cursor: lastItem
+        }
     }
 }

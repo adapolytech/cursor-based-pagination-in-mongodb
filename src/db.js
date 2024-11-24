@@ -6,6 +6,7 @@ export class DB extends EventEmitter {
 
     constructor() {
         super()
+        if (!process.env.MONGO_URL) this.emit("error", new Error("MONGO URL is required to start app"))
         this.mongoClient = new MongoClient(process.env.MONGO_URL, { monitorCommands: true });
         this.init_db()
     }

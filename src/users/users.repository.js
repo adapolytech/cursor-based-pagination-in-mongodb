@@ -22,7 +22,7 @@ export class UsersRepository {
         return insertedId
     }
 
-    static async find(query = {}) {
-        return await this.collection.find(query).toArray()
+    static async find(filter = {}, options) {
+        return await this.collection.find(query, options).toArray()
     }
 }

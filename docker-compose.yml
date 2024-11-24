@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  backend: 
+    build: ./
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URL: mongodb://database:27017/node_app
+  database:
+    image: mongodb:latest
+    ports:
+      - 27017:27017

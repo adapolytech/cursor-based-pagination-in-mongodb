@@ -1,3 +1,4 @@
+import { inspect } from "node:util";
 import { App } from "./app.js";
 import { DB } from "./db.js";
 import { UsersController } from "./users/users.controller.js";
@@ -9,6 +10,7 @@ import { UsersController } from "./users/users.controller.js";
         app.start(+process.env.PORT || 4000)
 
     }).on("error", async (error) => {
+        console.log(inspect(error, { depth: Infinity, colors: true }));
         await db.close_db()
         process.exit(-1)
     })
