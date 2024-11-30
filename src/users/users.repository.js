@@ -23,6 +23,10 @@ export class UsersRepository {
     }
 
     static async find(filter = {}, options) {
-        return await this.collection.find(query, options).toArray()
+        return await this.collection.find(filter, options).toArray()
+    }
+
+    static async findOne(filter = {}) {
+        return await this.collection.findOne(filter)
     }
 }
